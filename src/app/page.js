@@ -1,6 +1,16 @@
 import Image from "next/image";
+const getUsers = async () => {
+  try {
+    const users = await fetch("http://localhost:3001/api/users");
+    return await users.json();
+  } catch (error) {
+    return error;
+  }
+};
 
-export default function Home() {
+export default async function Home() {
+  const users = await getUsers();
+  console.log(users, "usersss");
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
